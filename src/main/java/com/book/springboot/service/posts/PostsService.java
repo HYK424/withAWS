@@ -18,16 +18,16 @@ import java.util.stream.Collectors;
 @Service
 
 public class PostsService {
-    private final PostsRepository postsRepository;
+    private final PostsRepository postsRepository; //인터페이스 PostsRepository의 참조변수
 
-    @Transactional
+    @Transactional //@Transactional은 해당 클래스, 메소드가 트랜잭션 처리를 하도록 한다. 데이터 베이스의 상태를 변경하는 작업-트랜잭션의 4성질 참조
     public Long save(PostsSaveRequestDto requestDto){
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
     @Transactional
     public Long update(Long id, PostsUpdateRequestDto requestDto){
-        Posts posts=postsRepository.findById(id)
+        Posts posts=postsRepository.findById(id)  //PostsRepository는 SpringJPA를 상속한다. 해당 메소드는 SpringJPA에서 지원하는 기능이다.
                 .orElseThrow(() ->new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
 
         posts.update(requestDto.getTitle(), requestDto.getContent());
@@ -37,7 +37,7 @@ public class PostsService {
 
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc(){
-        return postsRepository.findAllDesc().stream()
+        return postsRepository.findAllDesc().stream()  //postsrepository에서 정의했던 findAllDesc()사용한다.
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
