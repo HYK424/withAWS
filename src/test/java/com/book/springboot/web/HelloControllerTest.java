@@ -1,4 +1,4 @@
-package com.book.springboot;
+package com.book.springboot.web;
 
 import com.book.springboot.web.HelloController;
 
