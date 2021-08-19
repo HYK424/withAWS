@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     private final PostsService postsService;
 
-    @GetMapping("/") //index.mustache에 url매핑. "/"를 요청하면 index가 나온다.
+    @GetMapping("/") //index.mustache에 url매핑. "/"를 요청하면 index가 나온다
     public String index(Model model){
         model.addAttribute("posts", postsService.findAllDesc());
         return "index";
