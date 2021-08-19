@@ -48,6 +48,15 @@ public class PostsService {
                 .orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
 
         return new PostsResponseDto(entity);
+    }
 
+    @Transactional
+    public void delete (Long id){
+        Posts posts=postsRepository.findById(id)
+                .orElseThrow(()->new
+                        IllegalArgumentException("해당 게시글이 없습니다. id="+id));
+
+        postsRepository.delete(posts); /*PostsRepoitory에서는 이미 delete메소드를 지원하고 있다. 엔티티를 파라미터로 삭제할 수 있고
+        deleteById메소드를 통해 id로 삭제할 수 있다. 존재하는 Posts 인지 조회 후 삭제한다.*/
     }
 }
