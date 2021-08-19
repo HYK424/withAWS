@@ -22,7 +22,7 @@ public class PostsApiController {
  }
 
  @PutMapping("/api/v1/posts/{id}")
-    /*PutMapping 주요기능: 수정. 새로운 리소스를 생성하거나, 대상 리소스를 나타내는 데이터를 대체함. 멱등성을 갖는다*/
+    /*PutMapping 주요기능: 수정. 새로운 리소스를 생성하거나, 대상 리소스를 나타내는 데이터를 대체함. 멱등성을 갖는다 */
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
      return postsService.update(id, requestDto);
  }
